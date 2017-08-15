@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <style>
+        .blue {
+            background: blue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <div id="menu">
+
+        <div class="item">
+            <span>Élément 1</span>
+            <span>Élément 2</span>
+        </div>
+
+        <div class="publicite">
+            <span>Élément 3</span>
+            <span>Élément 4</span>
+        </div>
+
+    </div>
+
+
+
+    <div id="contenu">
+        <span>Introduction au contenu de la page...</span>
+    </div>
+
+
+
+    <a id="myLink" class="external red u" href="http://www.un_lien_quelconque.com">Un lien modifié dynamiquement</a>
+
+
+
+    <div id="myColoredDiv">
+        <p>Un peu de texte <a>et un lien</a></p>
+    </div>
+
+
+
+    <div id="myDiv">
+        <p>Un peu de texte <a>et un lien</a></p>
+    </div>
+
+
+
+    <div class="mydiv2">
+        <p>Un peu de texte <a>et un lien</a></p>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        // querySelector
+        var query = document.querySelector('#menu .item span'),
+            queryAll = document.querySelectorAll('#menu .item span');
+        alert(query.innerHTML); // Affiche : "Élément 1"
+        alert(queryAll.length); // Affiche : "2"
+        alert(queryAll[0].innerHTML + ' - ' + queryAll[1].innerHTML); // Affiche : "Élément 1 - Élément 2"
+
+
+
+        // getAttribute & setAttribute
+        var link = document.getElementById('myLink');
+        var href = link.getAttribute('href'); // On récupère l'attribut « href »
+        // var href = link.href;
+        alert(href);
+        link.setAttribute('href', 'http://www.siteduzero.com'); // On édite l'attribut « href »
+        // link.href = 'http://www.siteduzero.com';
+
+
+
+        // className (exemple : div)
+        document.getElementById('myColoredDiv').className = 'blue';
+
+
+
+        // for (exemple : label)
+        // element.htmlFor
+
+
+
+        // Plusieurs classes
+        var classes = document.getElementById('myLink').className;
+        var classesNew = [];
+        classes = classes.split(' ');
+        for (var i = 0, c = classes.length; i < c; i++) {
+            if (classes[i]) {
+                classesNew.push(classes[i]);
+            }
+        }
+        alert(classesNew);
+
+
+
+        // classList (à partir d'IE 10)
+        var div = document.querySelector('div');
+        // Ajoute une nouvelle classe
+        div.classList.add('new-class');
+        // Retire une classe
+        div.classList.remove('new-class');
+        // Retire une classe si elle est présente ou bien l'ajoute si elle est absente
+        div.classList.toggle('toggled-class');
+        // Indique si une classe est présente ou non
+        if (div.classList.contains('old-class')) {
+            alert('La classe .old-class est présente !');
+        }
+        // Parcourt et affiche les classes CSS
+        var result = '';
+        for (var i = 0; i < div.classList.length; i++) {
+            result += '.' + div.classList[i] + '\n';
+        }
+        alert(result);
+
+
+
+        // Récupérer du HTML
+        var div = document.getElementById('myDiv');
+        alert(div.innerHTML); // <p>Un peu de texte <a>et un lien</a></p>
+
+
+
+        // Ajouter ou éditer du HTML
+        document.getElementById('myDiv').innerHTML = '<blockquote>Je mets une citation à la place du paragraphe</blockquote>';
+        document.getElementById('myDiv').innerHTML += ' et <strong>une portion mise en emphase</strong>.'; // ajouter du contenu, et ne pas modifier le contenu déjà en place
+
+
+
+        // innerText (pour navigateur < IE 9) & textContent (autres)
+        var div = document.getElementById('myDiv');
+        var txt = '';
+        // 1ère méthode (méthode courte)
+        // txt = div.textContent || div.innerText || '';
+        // 2ème méthode
+        if (div.textContent) { // « textContent » existe ? Alors on s'en sert !
+            txt = div.textContent;
+        } else if (div.innerText) { // « innerText » existe ? Alors on doit être sous IE.
+            txt = div.innerText + ' [via Internet Explorer]';
+        } else { // Si aucun des deux n'existe, cela est sûrement dû au fait qu'il n'y a pas de texte
+            txt = ''; // On met une chaîne de caractères vide
+        }
+        alert(txt);
+
+
+    </script>
+</body>
+</html>

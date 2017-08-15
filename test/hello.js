@@ -1,5 +1,7 @@
 // alert('Hello World!');
 
+
+
 /*
 
 // Message à l'écran
@@ -11,6 +13,8 @@ alert(j);
 
 */
 
+
+
 /*
 
 // Boite de dialogue
@@ -18,6 +22,8 @@ var userName = prompt('Entrez votre nom :');
 alert(userName);
 
 */
+
+
 
 /*
 
@@ -28,6 +34,8 @@ result = debut + name + end;
 alert(result);
 
 */
+
+
 
 /*
 
@@ -40,6 +48,8 @@ alert(result);
 
 */
 
+
+
 /*
 
 // Convertir un nombre en chaîne de caractères
@@ -48,6 +58,8 @@ text = nombre1 + '' + nombre2;
 alert(typeof(text));
 
 */
+
+
 
 /*
 
@@ -60,6 +72,8 @@ else {
 }
 
 */
+
+
 
 /*
 
@@ -76,6 +90,8 @@ else {
 }
 
 */
+
+
 
 /*
 
@@ -100,6 +116,8 @@ switch (drawer) {
 
 */
 
+
+
 /*
 
 // Condition ternaire
@@ -110,6 +128,8 @@ endMessage = adult ? '18+' : '-18';
 alert(startMessage + endMessage);
 
 */
+
+
 
 /*
 
@@ -127,3 +147,148 @@ alert(output); // Affiche : « 0 »
 //Ici donc, l'opération number++ a retourné la valeur de number non incrémentée.
 
 */
+
+
+
+/*
+
+// Les Tableaux
+var myArray_a = [42, 12, 6, 3];
+var myArray_b = [42, 'Sébastien', 12, 'Laurence'];
+
+// Récupérer et modifier des valeurs
+var myArray = ['Sébastien', 'Laurence', 'Ludovic', 'Pauline', 'Guillaume'];
+alert(myArray[1]); // Affiche : « Laurence »
+myArray[1] = 'Clarisse';
+alert(myArray[1]); // Affiche : « Clarisse »
+
+ */
+
+
+
+/*
+
+// Opérations sur les tableaux
+var myArray = ['Sébastien', 'Laurence'];
+myArray.push('Ludovic'); // Ajoute « Ludovic » à la fin du tableau
+myArray.unshift('Pauline'); // Ajoute « Pauline » au début du tableau
+
+var myArray2 = ['Sébastien', 'Laurence', 'Ludovic', 'Pauline', 'Guillaume'];
+myArray2.shift(); // Retire « Sébastien » du début du tableau
+myArray2.pop(); // Retire « Guillaume » de la fin du tableau
+alert(myArray2); // Affiche « Laurence,Ludovic,Pauline »
+ */
+
+
+/*
+
+// Chaînes de caractères et tableaux :
+
+// Les chaînes de caractères possèdent une méthode split() qui permet de les découper en un tableau, en fonction d'un séparateur.
+var cousinsString = 'Pauline Guillaume Clarisse',
+    cousinsArray = cousinsString.split(' '); // split()va couper la chaîne de caractères à chaque fois qu'elle va rencontrer une espace
+alert(cousinsString);
+alert(cousinsArray);
+
+// L'inverse desplit(), c'est-à-dire créer une chaîne de caractères depuis un tableau, se nomme join()
+var cousinsString_2 = cousinsArray.join('-');
+alert(cousinsString_2);
+
+ */
+
+
+
+/*
+
+// Parcourir avec for
+var myArray = ['Sébastien', 'Laurence', 'Ludovic', 'Pauline', 'Guillaume'];
+for (var i = 0, c = myArray.length; i < c; i++) {
+    alert(myArray[i]);
+}
+
+*/
+
+
+
+/*
+
+// Les objets littéraux
+var family = {
+    self: 'Sébastien',
+    sister: 'Laurence',
+    brother: 'Ludovic',
+    cousin_1: 'Pauline',
+    cousin_2: 'Guillaume'
+};
+
+// Accès
+family.sister; // Accès 1
+family['sister']; // Accès 2
+var id = 'sister';
+alert(family[id]); // Accès 3 : Affiche : « Laurence »
+
+// Ajouter des items
+family['uncle'] = 'Didier'; // Ajout 1 : « Didier » est ajouté et est accessible via l'identifiant « uncle »
+family.uncle = 'Didier'; // Ajout 2 : Même opération mais d'une autre manière
+
+// Parcourir un objet avec for in
+for (var id in family) { // On stocke l'identifiant dans « id » pour parcourir l'objet « family »
+    alert(family[id]);
+}
+
+*/
+
+
+
+/*
+
+// Utilisation des objets littéraux
+function getCoords() {
+    // Script incomplet, juste pour l'exemple
+    return {
+        x: 12,
+        y: 21
+    };
+}
+var coords = getCoords();
+alert(coords.x); // 12
+alert(coords.y); // 21
+
+*/
+
+
+
+// L'élément window
+// Lorsque vous déclarez une variable dans le contexte global de votre script, cette variable deviendra en vérité une propriété de l'objet window.
+var text = 'Variable globale !';
+(function() { // On utilise une IIFE pour « isoler » du code
+    var text = 'Variable locale !';
+    alert(text); // Forcément, la variable locale prend le dessus
+    alert(window.text); // Mais il est toujours possible d'accéder à la variable globale grâce à l'objet « window »
+})();
+
+// Toute variable non déclarée (donc utilisée sans jamais écrire le mot-clé var) deviendra immédiatement une propriété de l'objet window,
+// et ce, quel que soit l'endroit où vous utilisez cette variable !
+(function() { // On utilise une IIFE pour « isoler » du code
+    text = 'Variable accessible !'; // Cette variable n'a jamais été déclarée et pourtant on lui attribue une valeur
+})();
+alert(text); // Affiche : « Variable accessible ! »
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
