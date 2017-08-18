@@ -57,6 +57,11 @@
     </div>
 
 
+    <div>
+        <p id="myP">Un peu de texte, <a>un lien</a> et <strong>une portion en emphase</strong></p>
+    </div>
+
+
 
     <script type="text/javascript">
 
@@ -149,6 +154,55 @@
             txt = ''; // On met une chaîne de caractères vide
         }
         alert(txt);
+
+
+        // Les nœuds
+        var paragraph = document.getElementById('myP');
+        var blockquote = paragraph.parentNode; // nœud parent
+        var typeBlockquote = paragraph.nodeType; // Type du noeud
+        var first = paragraph.firstChild; // Premier enfant d'un nœud
+        var last = paragraph.lastChild; // Dernier enfant d'un nœud
+        var firsElemetChild = paragraph.firstElementChild; // Premier élémnent considéré comme élément HTML( éviter les nœuds #text par exemple)
+        var lastElemetChild = paragraph.lastElementChild; // Dernier élémnent considéré comme élément HTML( éviter les nœuds #text par exemple)
+        var firstValue = first.nodeValue; // nodeValue/data : recupérer le texte du premier enfant : puisque c'est de type #text, pas de problème
+        var lastValue = last.firstChild.data; // Mais avec un noeud normal(strong ici), on doit d'abord récupérer le noeds contenant le text(firstChild)
+
+
+        // nextSibling et previousSibling : permettent d'accéder respectivement au nœud suivant et au nœud précédent
+        // Tout comme pour firstChild et lastChild, il existe les propriétés nextElementSibling et previousElementSibling qui permettent, elles aussi, de ne récupérer que les éléments HTML.
+        // Ces deux propriétés ont les mêmes problèmes de compatibilité que firstElementChild et lastElementChild
+        var next = first.nextSibling; // accéder au noeud suivant
+        var child = paragraph.lastChild; // On prend le dernier enfant
+        while (child) {
+            if (child.nodeType === Node.ELEMENT_NODE) { // C'est un élément HTML
+                alert(child.firstChild.data);
+            } else { // C'est certainement un nœud textuel
+                alert(child.data);
+            }
+            child = child.previousSibling; // À chaque tour de boucle, on prend l'enfant précédent
+        }
+
+
+        // childNodes : etourne un tableau contenant la liste des enfants d'un élément
+        var children = paragraph.childNodes;
+        for (var i = 0, c = children.length; i < c; i++) {
+            if (children[i].nodeType === Node.ELEMENT_NODE) { // C'est un élément HTML
+                alert(children[i].firstChild.data);
+            } else { // C'est certainement un nœud textuel
+                alert(children[i].data);
+            }
+        }
+
+
+        // Ajouter des éléments HTML
+        var newLink = document.createElement('a');
+        newLink.id = 'sdz_link';
+        newLink.href = 'http://www.siteduzero.com';
+        newLink.title = 'Découvrez le Site du Zéro !';
+        newLink.setAttribute('tabindex', '10');
+        document.getElementById('myP').appendChild(newLink);
+        var newLinkText = document.createTextNode("Le Site du Zéro");
+        newLink.appendChild(newLinkText);
 
 
     </script>
